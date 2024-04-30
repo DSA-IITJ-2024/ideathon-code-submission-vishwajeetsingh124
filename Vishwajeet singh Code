@@ -1,0 +1,27 @@
+import random
+import time
+
+class TrafficOptimizer:
+    def __init__(self):
+        self.traffic_signals = {'A': 'green', 'B': 'red', 'C': 'red'}  # Initial signal configuration
+    
+    def get_traffic_data(self):
+        # Simulate fetching real-time traffic data from sensors or APIs
+        # For simplicity, randomly generate traffic data for each intersection
+        return {intersection: random.randint(0, 100) for intersection in self.traffic_signals.keys()}
+    
+    def optimize_traffic(self):
+        while True:
+            traffic_data = self.get_traffic_data()
+            for intersection, traffic_level in traffic_data.items():
+                if traffic_level < 50:
+                    self.traffic_signals[intersection] = 'green'  # Low traffic, switch signal to green
+                else:
+                    self.traffic_signals[intersection] = 'red'  # High traffic, switch signal to red
+            
+            print("Updated Traffic Signals:", self.traffic_signals)
+            time.sleep(5)  # Adjust traffic signals every 5 seconds
+
+# Instantiate TrafficOptimizer and start optimizing traffic
+optimizer = TrafficOptimizer()
+optimizer.optimize_traffic()
